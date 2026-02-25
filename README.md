@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌳 LinkTree Clone
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
-First, run the development server:
+A full-stack LinkTree clone built with **Next.js** that lets users create a personalized page with all their important links in one place.
+
+---
+
+## ✨ Features
+
+- Claim a unique handle/username
+- Add multiple links with custom display text
+- Add a profile picture via URL
+- Instantly creates your LinkTree page on submission
+- Toast notifications for feedback
+- Clean two-column responsive layout
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **Notifications:** react-toastify
+- **API:** Next.js API Routes (`/api/add`)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js >= 18
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/linktree-clone.git
+cd linktree-clone
+npm install
+```
+
+### Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```
+├── app/
+│   ├── api/
+│   │   └── add/
+│   │       └── route.js       # API route to save linktree data
+│   ├── generate/
+│   │   └── page.js            # Main generate/create page
+│   └── [handle]/
+│       └── page.js            # Public linktree display page
+├── public/
+│   ├── logo.svg
+│   └── generate.webp
+└── README.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔌 API Reference
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### `POST /api/add`
 
-## Deploy on Vercel
+Creates a new LinkTree entry.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Request Body:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```json
+{
+  "handle": "johndoe",
+  "profile": "https://example.com/photo.jpg",
+  "link": [
+    { "linktext": "My Portfolio", "link": "https://portfolio.com" },
+    { "linktext": "Twitter", "link": "https://twitter.com/johndoe" }
+  ]
+}
+```
+
+**Response:**
+
+```json
+{
+  "message": "LinkTree created successfully!"
+}
+```
+
+---
+
+## 🧑‍💻 Usage
+
+1. **Step 1 — Claim Your Handle:** Enter a unique username. Your page will be accessible at `/{handle}`.
+2. **Step 2 — Add Links:** Click **Add Link** to add as many links as you want, each with a display label and URL.
+3. **Step 3 — Add Profile Picture:** Paste a URL to your profile image.
+4. Click **Create Your Link Tree** to publish your page.
+
+---
+
+## 🐛 Known Issues / Fixed Bugs
+
+- `handleChange` previously used the JS comma operator `(link, linktext)` instead of returning a proper object `{ link, linktext }` — now fixed.
+- Input `onChange` handlers were passing stale values to `handleChange` — corrected argument order.
+- `submitLink` was called with undefined variables `link` and `linktext` — fixed to use state directly.
+- React was incorrectly imported as a named export — corrected to `import React, { useState } from 'react'`.
+
+---
+
+## 📄 License
+
+MIT License. Feel free to use and modify.
